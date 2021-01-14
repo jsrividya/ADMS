@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        function register(){
+            debugger;
+            $username = document.getElementById("username").value;
+            $password = document.getElementById("password").value;
+            $gender = document.getElementById("gender_radio").value;
+            $dob = document.getElementById("dob").value;
+            $address1 = document.getElementById("address1").value;
+            $address2 = document.getElementById("address2").value;
+            $city = document.getElementById("city").value;
+            $state = document.getElementById("state").value;
+            $zipcode = document.getElementById("zipcode").value;
+        }
+        
+    </script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: black;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Add padding to containers */
+.container {
+  width: 50%;
+  padding: 16px;
+  background-color: #3498DB;  
+}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background:#f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus, input[type=date]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Overwrite default styles of hr */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* Set a style for the submit button */
+.registerbtn {
+  background-color: white;
+  color: black;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.registerbtn:hover {
+  background-color: #3498DB;
+}
+
+/* Add a blue text color to links */
+a {
+  color: dodgerblue;
+}
+
+/* Set a grey background color and center the text of the "sign in" section */
+.signin {
+  background-color: #f1f1f1;
+  text-align: center;
+}
+
+form{
+left: 50%;
+top: 50%;
+margin-left: -15%;
+position: absolute;
+margin-top: -20%;
+}
+</style>
+</head>
+<body >
+    <div background="ecg-2.jpg">
+        <form action="/sign_up" method="POST" >
+        <div class="container" >
+            <h1>Register</h1>
+            <p>Please fill in this form to create an account.</p>
+            <hr>
+            <label for="email"><b>First Name</b></label>
+            <input type="text" id="fname" placeholder="Enter First Name" name="fname" required>
+
+            <label for="email"><b>Last Name</b></label>
+            <input type="text" id="lname" placeholder="Enter Last Name" name="lname" required>
+
+            <label for="email"><b>Email</b></label>
+            <input type="text" id="username" placeholder="Enter Email" name="email" required>
+
+            <label for="psw"><b>Password</b></label>
+            <input type="password" id="password" placeholder="Enter Password" name="psw" required>
+
+            <label for="psw-repeat"><b>Repeat Password</b></label>
+            <input type="password" id= "password_repeat" placeholder="Repeat Password" name="psw-repeat" required>
+
+            <label for="gender"><b>Gender: </b></label>
+            <input type="radio" name="gender" id="gender_radio" value="male">Male
+            <input type="radio" name="gender" id="gender_radio" value="female">Female
+            <br><br>
+            <label for="dob"><b>Date of Birth: </b></label>
+            <input type="date" id="dob" name="dob">
+            <br><br>
+            <label for="address1"><b>Address Line 1</b></label>
+            <input type="text" id="address1" name="address1" required>
+            <label for="address2"><b>Address Line 2</b></label>
+            <input type="text" id="address2" name="address2" required>
+
+            <br>
+            <label for="city"><b>City</b></label>
+            <input type="text" id="city" name="city" required>
+            <label for="state"><b>State</b></label>
+            <select required id="state" name="state">
+                    <option value=""></option>
+                    <option value="AL">Alabama</option>
+                    <option value="AK">Alaska</option>
+                    <option value="AZ">Arizona</option>
+                    <option value="AR">Arkansas</option>
+                    <option value="CA">California</option>
+                    <option value="CO">Colorado</option>
+                    <option value="CT">Connecticut</option>
+                    <option value="DE">Delaware</option>
+                    <option value="DC">District Of Columbia</option>
+                    <option value="FL">Florida</option>
+                    <option value="GA">Georgia</option>
+                    <option value="HI">Hawaii</option>
+                    <option value="ID">Idaho</option>
+                    <option value="IL">Illinois</option>
+                    <option value="IN">Indiana</option>
+                    <option value="IA">Iowa</option>
+                    <option value="KS">Kansas</option>
+                    <option value="KY">Kentucky</option>
+                    <option value="LA">Louisiana</option>
+                    <option value="ME">Maine</option>
+                    <option value="MD">Maryland</option>
+                    <option value="MA">Massachusetts</option>
+                    <option value="MI">Michigan</option>
+                    <option value="MN">Minnesota</option>
+                    <option value="MS">Mississippi</option>
+                    <option value="MO">Missouri</option>
+                    <option value="MT">Montana</option>
+                    <option value="NE">Nebraska</option>
+                    <option value="NV">Nevada</option>
+                    <option value="NH">New Hampshire</option>
+                    <option value="NJ">New Jersey</option>
+                    <option value="NM">New Mexico</option>
+                    <option value="NY">New York</option>
+                    <option value="NC">North Carolina</option>
+                    <option value="ND">North Dakota</option>
+                    <option value="OH">Ohio</option>
+                    <option value="OK">Oklahoma</option>
+                    <option value="OR">Oregon</option>
+                    <option value="PA">Pennsylvania</option>
+                    <option value="RI">Rhode Island</option>
+                    <option value="SC">South Carolina</option>
+                    <option value="SD">South Dakota</option>
+                    <option value="TN">Tennessee</option>
+                    <option value="TX">Texas</option>
+                    <option value="UT">Utah</option>
+                    <option value="VT">Vermont</option>
+                    <option value="VA">Virginia</option>
+                    <option value="WA">Washington</option>
+                    <option value="WV">West Virginia</option>
+                    <option value="WI">Wisconsin</option>
+                    <option value="WY">Wyoming</option>
+                </select>
+            <br><br>
+            <label for="zipcode"><b>Zipcode</b></label>
+            <input type="text" id="zipcode" name="zipcode" required>
+            <hr>
+            <input type="submit" value="Register" class="btn btn-primary btn-large btn-block">
+        </div>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+font-family: Arial;
+
+}
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  padding: 1px 2px;
+  border: 1px solid #ccc;
+  border-top: none;
+  height:100%;
+  position: relative;
+}
+
+/* Style the close button */
+.topright {
+  float: right;
+  cursor: pointer;
+  font-size: 28px;
+}
+
+.topright:hover {color: red;}
+
+.main-tab{
+  background-color: lightblue;
+  padding: 20px;
+  text-align: center;
+}
+.header {
+  background-color: lightblue;
+  padding: 20px;
+  text-align: center;
+}
+.bgimg {
+    background-image: url('/static/adms-main.jpg');
+}
+</style>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['gauge']});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Label', 'Value'],
+          ['Glucose', {{glocuse_reading}}]
+        ]);
+
+        var options = {
+          width: 400, height: 300,
+          redFrom: 90, redTo: 100,
+          yellowFrom:75, yellowTo: 90,
+          greenFrom:0, greenTo: 75,
+          minorTicks: 5
+        };
+
+        var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
+        var chart1 = new google.visualization.Gauge(document.getElementById('chart_div1'));
+        var chart2 = new google.visualization.Gauge(document.getElementById('chart_div2'));
+        chart.draw(data, options);
+        chart1.draw(data, options);
+        chart2.draw(data, options);
+      }
+    </script>
+    <script>
+        google.charts.load('current', {packages: ['corechart', 'line']});
+        google.charts.setOnLoadCallback(drawBasic);
+
+        function drawBasic() {
+          var data = new google.visualization.DataTable();
+          data.addColumn('number', 'X');
+          data.addColumn('number', 'GTrend');
+          data.addRows([
+          [0, {{trend_0}}], [1, {{trend_1}}], [2, {{trend_2}}], [3, {{trend_3}}], [4, {{trend_4}}]
+          ]);
+
+          var options = {
+            legend: 'none',
+            width: 800, height: 300,
+            hAxis: {
+              title: 'Past 5 Readings'
+            },
+            vAxis: {
+              title: 'Glucose Levels',
+              minValue: 0,
+              maxValue: 200
+            },
+            pointShape: 'circle',
+            pointSize: 10
+
+          };
+          var chart = new google.visualization.LineChart(document.getElementById('line_chart_div'));
+          chart.draw(data, options);
+    }
+    </script>
+    <script>
+        function openContent(evt, cityName) {
+          var i, tabcontent, tablinks;
+          tabcontent = document.getElementsByClassName("tabcontent");
+          for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+          }
+          tablinks = document.getElementsByClassName("tablinks");
+          for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+          }
+          document.getElementById(cityName).style.display = "block";
+          evt.currentTarget.className += " active";
+        }
+
+        // Get the element with id="defaultOpen" and click on it
+        <!--document.getElementById("defaultOpen").click();-->
+    </script>
+</head>
+<body>
+<div class="bgimg">
+    <div class="header">
+        <label id="appname" style="font-size:200%">Automated Diabetes Management System</label>
+        <a href="/sign_out" style="float:right; text-decoration:none">&nbsp;&nbsp;&nbsp;SignOut</a>
+        {% if session.logged_in %}
+            <label id="name" style="float:right">Hello {{user}}</label>
+        {% endif %}
+    </div>
+    <div class="tab">
+      <button class="tablinks" onclick="openContent(event, 'Home')" id="defaultOpen">Home</button>
+      <button class="tablinks" onclick="openContent(event, 'Glucose Readings')">Glucose Readings</button>
+      <button class="tablinks" onclick="openContent(event, 'Insulin Calculator')">Insulin Calculator</button>
+      <button class="tablinks" onclick="openContent(event, 'About')">About</button>
+    </div>
+
+    <div id="Home" class="tabcontent">
+      <span onclick="this.parentElement.style.display='none'" class="topright"></span>
+      <p>Home of ADMS.</p>
+      <div id="chart_div1" style="width: 400px; height: 1000px; align: center"></div>
+    </div>
+
+    <div id="Glucose Readings" class="tabcontent">
+      <span onclick="this.parentElement.style.display='none'" class="topright"></span>
+      <!--<p>Glucose Level.</p>-->
+      <div id="chart_div" style="width: 400px; height: 400px; align: center"></div>
+      <div id="line_chart_div" style="width: 400px; height: 400px; float: right:"></div>
+    </div>
+
+    <div id="Insulin Calculator" class="tabcontent">
+      <span onclick="this.parentElement.style.display='none'" class="topright"></span>
+      <div id="chart_div2" style="width: 400px; height: 1000px; align: center"></div>
+      <p>Insulin Calculator comes here.</p>
+    </div>
+
+    <div id="About" class="tabcontent">
+      <span onclick="this.parentElement.style.display='none'" class="topright"></span>
+      <p>About is all about ADMS.</p>
+    </div>
+</div>
+</body>
+</html>
+
